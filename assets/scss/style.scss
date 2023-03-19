@@ -1,11 +1,12 @@
 //ブレイクポイント
-$spmax : 768px; //スマホ表示～767px
+$spmax : 767px; //スマホ表示～767px
 $pcmin : 768px; //PC表示　768px~
 
 // サイト幅
 $spwidth : 100%;
-$pcwidth : 1152px;//その内側1024px
+$pcwidth : 1152px; //その内側1024px
 $pcwidth-inside : 88.8%;
+
 //レスポンシブ対応
 @mixin sp {
     @media screen and (max-width: $spmax) {
@@ -20,14 +21,23 @@ $pcwidth-inside : 88.8%;
 }
 
 // ヘッター
-header{
+header {
     height: 150px;
     margin: 0 auto;
+    max-width: $pcwidth;
+    @include sp {
+        display: none;
+    }
 
-    nav{
-        width: $pcwidth;
+    nav {
+
         margin: 0 auto;
-        ul{
+
+        @include sp {
+            display: none;
+        }
+
+        ul {
             height: 150px;
             display: flex;
             align-items: center;
@@ -39,42 +49,93 @@ header{
 }
 
 // kv
-.kv{
+.kv {
     max-width: $pcwidth;
     margin: 0 auto;
-    span{
+    position: relative;
+   
+
+    h1 {
+        //logo画像
+        position: absolute;
+        // content: url(/av_chatan/wp-content/themes/av_chatan_wp/folder/logo.png);
+        top: -25%;
+        left: 0;
+        z-index: 1;
+        // width: 50%;
+    
+        @include sp {
+            position:static ;//ポジションを解除するやつ
+            display: flex;
+            justify-content: center;
+            margin: 5%;
+        }
+    }
+
+    picture {
         display: block;
         position: relative;
         max-width: $pcwidth;
         margin: 0 auto;
-        
-        img{
+
+        .mv-img {
             display: block;
             width: $pcwidth-inside;
             margin: 0 auto;
+            @include sp {
+                width: 100%;
+            }
+
+        }
+
+
+
+        &::after {
+            //筆記体のAmerican Village画像
+            position: absolute;
+            display: block;
+            content: "";
+            background-image: url(../../folder/visual_text_pc.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding: 5%;
+            width: 60%;
+            height: 100%;
+            bottom: 0;
+            right: 0;
+            transform: translate(0%,50%);
+            width: 45%;
+            height: 100%;
+
+            @include sp {
+                content: "";
+                background-image: url(../../folder/visual_text_sp.png);
+                top: 0;
+                left: 0;
+                transform: translate(5%, 5%);
+                width: 60%;
             
+            }
+
+
         }
 
-        &::before{
-            position: absolute;
-            content: url(/folder/logo.png);
-            top: -25%;
-            left: 0;
-            width: 100%; 
-        }
-
-        &::after{
-            position: absolute;
-            content: url(/folder/visual_text_pc.png);
-            bottom: -55px;
-            right:0;
-           
-        }
-        
     }
-    h1{
+
+    p {
+
         margin: 20px auto;
         font-size: 1.5rem;
+
+        @include sp {
+            text-align: center;
+            span{
+                display: block;
+            }
+
+        }
+
+
     }
 
 }
@@ -90,7 +151,7 @@ main {
     }
 
     h2 {
-        
+
         font-size: 2rem;
         text-align: center;
 
@@ -173,11 +234,12 @@ main {
                         right: 15px;
 
                     }
-                        &:hover::after {
-                            width: 75%;
-                            transition: .8s;
 
-                        }
+                    &:hover::after {
+                        width: 75%;
+                        transition: .8s;
+
+                    }
 
 
                 }
@@ -197,6 +259,3 @@ footer {
     height: 100px;
     margin-top: 50px;
 }
-
-
-

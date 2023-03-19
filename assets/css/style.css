@@ -6,10 +6,20 @@
 header {
   height: 150px;
   margin: 0 auto;
+  max-width: 1152px;
+}
+@media screen and (max-width: 767px) {
+  header {
+    display: none;
+  }
 }
 header nav {
-  width: 1152px;
   margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  header nav {
+    display: none;
+  }
 }
 header nav ul {
   height: 150px;
@@ -22,34 +32,75 @@ header nav ul {
 .kv {
   max-width: 1152px;
   margin: 0 auto;
+  position: relative;
 }
-.kv span {
+.kv h1 {
+  position: absolute;
+  top: -25%;
+  left: 0;
+  z-index: 1;
+}
+@media screen and (max-width: 767px) {
+  .kv h1 {
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+  }
+}
+.kv picture {
   display: block;
   position: relative;
   max-width: 1152px;
   margin: 0 auto;
 }
-.kv span img {
+.kv picture .mv-img {
   display: block;
   width: 88.8%;
   margin: 0 auto;
 }
-.kv span::before {
-  position: absolute;
-  content: url(/folder/logo.png);
-  top: -25%;
-  left: 0;
-  width: 100%;
+@media screen and (max-width: 767px) {
+  .kv picture .mv-img {
+    width: 100%;
+  }
 }
-.kv span::after {
+.kv picture::after {
   position: absolute;
-  content: url(/folder/visual_text_pc.png);
-  bottom: -55px;
+  display: block;
+  content: "";
+  background-image: url(../../folder/visual_text_pc.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 5%;
+  width: 60%;
+  height: 100%;
+  bottom: 0;
   right: 0;
+  transform: translate(0%, 50%);
+  width: 45%;
+  height: 100%;
 }
-.kv h1 {
+@media screen and (max-width: 767px) {
+  .kv picture::after {
+    content: "";
+    background-image: url(../../folder/visual_text_sp.png);
+    top: 0;
+    left: 0;
+    transform: translate(5%, 5%);
+    width: 60%;
+  }
+}
+.kv p {
   margin: 20px auto;
   font-size: 1.5rem;
+}
+@media screen and (max-width: 767px) {
+  .kv p {
+    text-align: center;
+  }
+  .kv p span {
+    display: block;
+  }
 }
 
 main {
@@ -57,7 +108,7 @@ main {
   margin: 0 auto;
   text-align: center;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   main {
     width: 100%;
   }
@@ -74,7 +125,7 @@ main .articles-wrap {
   width: 88.8%;
   gap: 3%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   main .articles-wrap {
     display: block;
   }
@@ -87,7 +138,7 @@ main .articles-wrap .articles {
   margin: 30px 0;
   text-align: start;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   main .articles-wrap .articles {
     width: 100%;
   }
